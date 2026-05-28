@@ -2,48 +2,33 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
+  firstName: "Vinod",
+  lastName: "Kumar",
+  name: `Vinod Kumar`,
+  role: "Senior Product Designer & Frontend Developer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "vinoddhanda001@gmail.com", // apni real email daalo
+  location: "Asia/Kolkata",
+  languages: ["English", "Hindi"],
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>Insights on product design, web performance, and building at scale.</>,
 };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
-  // Set essentials: true for links you want to show on the about page
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/vinoddhanda",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-    essential: true,
-  },
-  {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/vinoddhanda/", // apna LinkedIn URL daalo
     essential: true,
   },
   {
@@ -58,26 +43,32 @@ const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  title: `${person.name} — Product Designer & Frontend Developer`,
+  description: `Portfolio of ${person.name} — Senior Product Designer and Frontend Developer with 15+ years experience at CarDekho, 91Wheels.com, Genpact`,
+  headline: <>I design and build products that perform.</>,
   featured: {
-    display: true,
+    display: false,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">91Wheels</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/91wheels",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I'm Vinod, a Product Designer & Frontend Developer with{" "}
+      <Text as="span" size="xl" weight="strong">15+ years</Text>{" "}
+      of experience building automotive and marketplace platforms at{" "}
+      <Text as="span" size="xl" weight="strong">CarDekho</Text> and{" "}
+      <Text as="span" size="xl" weight="strong">91Wheels.com</Text>.
+      I combine product thinking, Figma design, and Next.js development
+      to ship fast, conversion-focused digital experiences.
+    </>
   ),
 };
 
@@ -85,7 +76,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} based in New Delhi, India`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,7 +85,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -102,52 +93,88 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I am a Senior Product Designer and Frontend Developer with 15+ years of experience
+        building high-traffic digital products. I have worked at India's leading automotive
+        platforms — CarDekho and 91Wheels.com — where I led design and frontend development
+        for products serving millions of monthly users.
+        <br /><br />
+        I work across the full product stack: Figma design systems, Next.js + Tailwind CSS
+        frontend development, Core Web Vitals optimization, and Google Analytics-driven
+        product decisions. I don't just deliver screens — I understand what makes
+        products grow.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
-    experiences: [
+  experiences: [
+  {
+    company: "91Wheels.com",
+    timeframe: "2020 — Present",
+    role: "Lead Frontend Developer & Product Designer",
+    achievements: [
+      <>
+        Built and maintained complete frontend from scratch using{" "}
+        <strong>Next.js and Tailwind CSS</strong> — serving millions of
+        monthly automotive enthusiasts across India.
+      </>,
+      <>
+        Redesigned lead generation flow in Figma — improved form
+        conversion rate from <strong>3.5% to 7%</strong>, doubling
+        lead volume through UI and UX flow changes alone.
+      </>,
+      <>
+        Designed and implemented vehicle listing pages, detail pages,
+        advanced search and filter UX, and mobile-first responsive
+        layouts.
+      </>,
+      <>
+        Optimized <strong>Core Web Vitals</strong> and Google PageSpeed
+        scores — directly improving SEO rankings and ad campaign
+        conversion performance.
+      </>,
+      <>
+        Integrated <strong>Google Analytics (GA4)</strong> and Search
+        Console tracking for data-driven product decisions.
+      </>,
+    ],
+    images: [],
+  },
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "CarDekho",
+        timeframe: "2013 — 2020",
+        role: "Senior Product Designer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Worked on India's largest automotive marketplace serving{" "}
+            <strong>millions of monthly users</strong> — vehicle discovery,
+            comparison tools, and dealer enquiry flows.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Led UI/UX design for key product features including vehicle
+            listings, search experience, finance tools, and mobile interfaces.
+          </>,
+          <>
+            Collaborated with product managers and engineering teams to ship
+            features that improved user engagement and conversion metrics
+            at scale.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Genpact",
+        timeframe: "2009 — 2013",
+        role: "UI Designer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Enterprise-scale UI design for B2B products and internal tools
+            across multiple business verticals.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Built strong foundation in user research, wireframing,
+            information architecture, and cross-functional collaboration.
           </>,
         ],
         images: [],
@@ -155,27 +182,51 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Skills & Tools",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Design",
+        description: (
+          <>
+            Figma, UI/UX Design, Design Systems, Component Libraries,
+            Wireframing, Prototyping, Mobile-First Design, Claude Design,
+            Responsive Web Design
+          </>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Development",
+        description: (
+          <>
+            Next.js, React, Tailwind CSS, HTML/CSS, JavaScript,
+            Claude Code, REST APIs, Sanity CMS, Headless CMS,
+            Frontend Performance Optimization
+          </>
+        ),
+      },
+      {
+        name: "Analytics & Performance",
+        description: (
+          <>
+            Core Web Vitals, Google PageSpeed Insights, Google Search Console,
+            Google Analytics GA4, Lighthouse, WebPageTest, SEO Best Practices
+          </>
+        ),
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
+        title: "Figma — Design Systems",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>
+            End-to-end product design in Figma — from wireframes to
+            production-ready design systems and developer handoffs.
+          </>
         ),
         tags: [
           {
@@ -183,26 +234,16 @@ const about: About = {
             icon: "figma",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "Next.js — Frontend Development",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>
+            Building fast, SEO-optimized frontends with Next.js, React,
+            and Tailwind CSS. Specialized in automotive and marketplace
+            platforms at scale.
+          </>
         ),
         tags: [
           {
@@ -213,20 +254,8 @@ const about: About = {
             name: "Next.js",
             icon: "nextjs",
           },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
     ],
   },
@@ -235,70 +264,23 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
+  title: "Writing about design and performance...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work: Work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  description: `Design and development projects by ${person.name}`,
 };
 
 const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
+  title: `Gallery – ${person.name}`,
+  description: `A visual collection by ${person.name}`,
+  images: [],
 };
 
 export { person, social, newsletter, home, about, blog, work, gallery };
