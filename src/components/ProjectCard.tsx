@@ -32,7 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <Column fillWidth gap="m">
-      <SmartLink href={href} style={{ display: "block", cursor: "pointer" }}>
+      <SmartLink href={href} style={{ display: "block", cursor: "pointer", width: "100%" }}>
         <Carousel
           sizes="(max-width: 960px) 100vw, 960px"
           items={images.map((image) => ({
