@@ -12,66 +12,27 @@ team:
 
 ## Overview
 
-India has millions of small agri-input shops — fertilizer and pesticide dealers serving farmers in every district and taluk. These shopkeepers manage inventory worth lakhs of rupees, run credit accounts for dozens of farmers, and track purchases from multiple vendors — all in paper khatas (hand-written ledgers).
+India has millions of small agri-input shops — fertilizer and pesticide dealers serving farmers in every district. These shopkeepers manage inventory worth lakhs of rupees, run credit for dozens of farmers, and track purchases from multiple vendors — all in paper khatas.
 
-**AgroKhata** replaces that paper khata with a digital system built around how these shopkeepers actually work: in Hindi, on the shop floor, hands busy, often mid-conversation with a customer.
+**AgroKhata** replaces that paper khata with a digital system built around how shopkeepers actually work: in Hindi, on the shop floor, hands busy, often mid-conversation with a customer.
 
-## The Problem — Who We Built For
+## The Problem
 
-A fertilizer shop owner in Haryana or Punjab typically:
+A fertilizer shop owner in Haryana or Punjab typically speaks Hindi, not English. They get physical bills from vendors, run credit for farmers who pay after harvest, and stock 20–50 products — all tracked manually.
 
-- Stocks 20–50 products across fertilizers, pesticides, and micronutrients
-- Runs credit for farmers who pay after harvest — tracking who owes what is critical
-- Gets physical bills from vendors like Iffco, Oswal, Pi Industries — and has to manually re-enter every item
-- Speaks Hindi or a local dialect — English-first apps are dead on arrival
-
-**The paper khata fails at scale.** Finding a customer's balance means flipping through pages. Knowing current stock means counting bags. Knowing profit means doing mental math. When credit goes untracked, money is lost.
-
-The challenge was not just digitizing a ledger — it was making digital faster and easier than paper for someone who has never used a business app.
-
-## What We Built
-
-### The Ledger (हिसाब) — Real-Time Shop Dashboard
-
-The home screen shows everything a shopkeeper needs at a glance: total sales, total purchases, amount received, and amount due — updated live with every transaction.
-
-Below the header, a chronological feed of all transactions — Sales, Purchases, and Payments — filterable with one tap. Every entry shows the product name, customer or vendor, amount, and whether it's settled or still due.
-
-The UI is fully in Hindi. Labels like **बिक्री** (sales), **खरीद** (purchase), **मिला** (received), **बकाया** (due) map directly to how shopkeepers talk about their business — not translated from an English business app.
-
-### Stock Management — Know What You Have, Before You Run Out
-
-The Stock screen shows every product with its category (Fertilizers, Pesticides), brand, quantity in stock, and both buying and selling price side by side.
-
-Low stock is flagged automatically with an orange **"Low"** badge — so the shopkeeper knows to reorder DAP or Nominee Gold before it runs out, not after a customer asks for it. Adding new stock is a simple form: pick the date, select the vendor, choose the products. Multiple products from a single purchase can be added in one entry.
-
-### Customer Accounts — Track Credit, Recover Dues
-
-Every customer has their own account showing total orders, amount received, and amount still due — in clear red when outstanding.
-
-The transaction history per customer shows exactly which products were sold on which date, how much was collected, and what remains. "Done as cash" vs "₹170 due" statuses are instantly scannable. From the customer screen, a shopkeeper can add a payment, add a new order, or pull a report — all in three taps.
-
-### Quick Actions — Everything One Tap Away
-
-The central `+` button opens a **"What to do?"** action sheet: New Sale, Stock In, Payment Received, Expense, Scan Bill, Voice Entry, New Bill. No deep navigation — the most common shop actions are one tap from anywhere in the app.
+**The paper khata fails at scale.** Finding a customer's balance means flipping through pages. Knowing stock means counting bags. When credit goes untracked, money is lost. The challenge was making digital faster and easier than paper for someone who has never used a business app.
 
 ---
-
-## The Two Features That Change Everything
 
 ### फोटो लो, AI पढ़ेगा। Entry होगी।
 
 ![AI Bill Scan — point camera, AI extracts items and fills entry automatically](/images/projects/astrokhata/profile-bill-scan-ai.png)
 
-When a vendor delivers stock with a physical paper bill, the shopkeeper used to re-enter every item manually. With **AI Bill Scan**, they just point their phone camera at the bill.
+When a vendor delivers stock with a physical paper bill, the shopkeeper used to re-enter every item manually. With **AI Bill Scan**, they just point their phone camera at the bill — the app extracts items, quantities, rates, and vendor name in seconds. One tap to confirm and save as Stock In, Sale, or Payment.
 
-The app captures the image, reads the text with OCR, and uses AI to extract the items, quantities, rates, and vendor name — in seconds. The extracted bill comes up for confirmation: vendor name, all line items with quantities and prices, total, and payment status (Paid / Partial / Credit). One tap to save as Stock In, Sale, or Payment — done.
-
-**This eliminates the biggest daily data-entry burden.** For a shop receiving 2–3 deliveries a day, that's significant time saved every single day.
+**This eliminates the biggest daily data-entry burden.** For a shop receiving 2–3 deliveries a day, that's real time saved every single day.
 
 > Scan bill → AI reads & parses → Confirm & save
-
-**Bill Scan · OCR + AI · Auto Stock In · GST Ready · PWA**
 
 ---
 
@@ -79,28 +40,22 @@ The app captures the image, reads the text with OCR, and uses AI to extract the 
 
 ![AI Voice Entry — speak in Hindi or local dialect, AI parses to structured transaction](/images/projects/astrokhata/profile-voice-ai.png)
 
-Many shopkeepers are comfortable speaking Hindi but uncomfortable typing on a phone. **Voice Entry** lets them say a transaction out loud — in natural, conversational Hindi — and the app parses it into a structured entry.
+Many shopkeepers are comfortable speaking but uncomfortable typing on a phone. **Voice Entry** lets them say a transaction out loud in natural Hindi — and the app parses it into a structured entry.
 
-They can say things like:
-- *"Sold sugar worth ₹100 to Ramesh in cash"*
-- *"Purchased 500kg DAP from Ramlal on credit"*
-- *"Received ₹200 payment from Suresh"*
-
-The AI understands the intent, extracts the transaction type, customer or vendor name, product, amount, and payment method — and shows a confirmation card before saving.
-
-The real test: it works with local dialect and informal phrasing. Input like *"मनीष को दोनों में गोल्ड 550 रुपए ना गाड़ी"* — colloquial, abbreviated, how someone actually speaks mid-transaction — is correctly parsed to a ₹550 sale of Nominee Gold to Manish, paid in cash.
-
-**This is the game changer.** A shopkeeper doesn't need to stop what they're doing, navigate menus, or type anything. They speak one sentence, confirm, done.
+Say *"मनीष को दोनों में गोल्ड 550 रुपए ना गाड़ी"* — colloquial, abbreviated, mid-transaction — and it correctly parses to: Sale · Nominee Gold · ₹550 · Cash. No menus, no typing. Speak one sentence, confirm, done.
 
 > Tap & speak → AI parses → Confirm & save
 
-**Hindi UI · AI Parsing · Next.js 15 · Supabase · PWA**
-
 ---
 
-## Why This Is Different
+## What Else We Built
 
-Most business apps are built for someone sitting at a desk, comfortable with software, typing on a keyboard. AgroKhata is built for someone standing behind a shop counter, talking to a customer, with bags of fertilizer behind them.
+- **Ledger (हिसाब)** — real-time dashboard: बिक्री, खरीद, मिला, बकाया — all live, in Hindi
+- **Stock** — every product with buy/sell price, quantity, and automatic low-stock alerts
+- **Customer accounts** — per-customer credit tracking with due amounts highlighted in red
+- **Quick actions** — one `+` tap from anywhere opens New Sale, Stock In, Payment, Expense, Scan Bill, Voice Entry
+
+## Why This Is Different
 
 | Problem | Our Solution |
 |---------|-------------|
@@ -109,8 +64,6 @@ Most business apps are built for someone sitting at a desk, comfortable with sof
 | Paper credit tracking | Per-customer accounts with live balances |
 | No stock visibility | Real-time stock with low-stock alerts |
 | English-only apps | Fully Hindi UI across the product |
-
-The result is a product that doesn't ask shopkeepers to change how they work — it adapts to them.
 
 ## Tools Used
 
