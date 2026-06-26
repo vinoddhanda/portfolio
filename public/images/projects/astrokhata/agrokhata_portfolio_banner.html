@@ -1,0 +1,466 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: transparent; }
+  .banner {
+    width: 1440px;
+    height: 810px;
+    background: #1a2744;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    display: flex;
+    align-items: center;
+  }
+  .bg-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(99,153,34,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(83,74,183,0.12) 0%, transparent 50%);
+  }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .left-panel {
+    position: relative; z-index: 2;
+    padding: 80px 0 80px 100px;
+    flex: 0 0 580px;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(99,153,34,0.15);
+    border: 1px solid rgba(99,153,34,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    color: #97c459;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    width: fit-content;
+  }
+  .dot { width: 7px; height: 7px; background: #97c459; border-radius: 50%; }
+  .headline {
+    font-size: 58px; font-weight: 700; line-height: 1.1;
+    color: #ffffff; letter-spacing: -0.02em;
+  }
+  .headline span { color: #97c459; }
+  .sub {
+    font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.6;
+    max-width: 420px;
+  }
+  .features {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 4px;
+  }
+  .feat {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; color: rgba(255,255,255,0.7);
+  }
+  .feat-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(99,153,34,0.15);
+    border: 1px solid rgba(99,153,34,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .feat-icon svg { width: 16px; height: 16px; }
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .pill {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px; padding: 5px 14px;
+    font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500;
+  }
+  .screens-area {
+    position: relative; z-index: 2;
+    flex: 1; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .phone {
+    width: 220px; height: 440px;
+    background: #0f1a2e;
+    border-radius: 36px;
+    border: 2px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    position: absolute;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+  .phone-1 { left: 60px; top: 50%; transform: translateY(-50%) rotate(-6deg); z-index: 3; }
+  .phone-2 { left: 250px; top: 50%; transform: translateY(-58%) rotate(2deg); z-index: 4; }
+  .phone-3 { left: 160px; top: 50%; transform: translateY(-42%) rotate(8deg) scale(0.88); z-index: 2; opacity: 0.7; }
+
+  /* Screen 1 — Hissab / Ledger */
+  .s1-header {
+    background: #2d7a5a;
+    padding: 18px 14px 14px;
+  }
+  .s1-shop { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .s1-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+  .s1-name { color: #fff; font-size: 13px; font-weight: 600; }
+  .s1-stats { display: flex; gap: 0; }
+  .s1-stat { flex: 1; }
+  .s1-label { font-size: 9px; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+  .s1-val { font-size: 16px; font-weight: 700; color: #fff; }
+  .s1-val.red { color: #ff7c7c; }
+  .s1-val.green { color: #a8f0c6; }
+  .s1-divider { width: 1px; background: rgba(255,255,255,0.2); margin: 0 10px; }
+  .s1-body { padding: 10px 12px; }
+  .s1-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+  .s1-tab { font-size: 10px; padding: 4px 10px; border-radius: 100px; }
+  .s1-tab.active { background: #1d9e75; color: #fff; }
+  .s1-tab.inactive { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); }
+  .s1-row { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: flex-start; }
+  .s1-product { font-size: 10px; color: rgba(255,255,255,0.85); font-weight: 600; margin-bottom: 2px; }
+  .s1-date { font-size: 9px; color: rgba(255,255,255,0.4); }
+  .s1-amt { text-align: right; }
+  .s1-amt-val { font-size: 12px; font-weight: 700; color: #fff; }
+  .s1-due { font-size: 9px; color: #ffb347; }
+  .s1-done { font-size: 9px; color: #7ee8a2; }
+  .s1-footer { position: absolute; bottom: 0; left: 0; right: 0; background: #111e35; padding: 10px 8px; display: flex; gap: 6px; }
+  .s1-btn { flex: 1; border-radius: 100px; padding: 7px 0; text-align: center; font-size: 9px; font-weight: 600; }
+  .s1-btn.outline { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+  .s1-btn.solid { background: #1d9e75; color: #fff; }
+
+  /* Screen 2 — Customer detail */
+  .s2-header { background: #111e35; padding: 16px 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .s2-back { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .s2-customer { font-size: 15px; font-weight: 700; color: #fff; }
+  .s2-phone { font-size: 10px; color: rgba(255,255,255,0.4); }
+  .s2-totals { display: flex; padding: 10px 12px; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .s2-total { flex: 1; }
+  .s2-total-label { font-size: 8px; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+  .s2-total-val { font-size: 14px; font-weight: 700; }
+  .s2-total-val.white { color: #fff; }
+  .s2-total-val.green { color: #7ee8a2; }
+  .s2-total-val.red { color: #ff7c7c; }
+  .s2-tdivider { width: 1px; background: rgba(255,255,255,0.1); margin: 0 10px; }
+  .s2-body { padding: 10px 12px; }
+  .s2-month { font-size: 9px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+  .s2-row { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s2-radio { width: 14px; height: 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; flex-shrink: 0; margin-top: 1px; }
+  .s2-info { flex: 1; }
+  .s2-pname { font-size: 10px; color: rgba(255,255,255,0.85); font-weight: 600; }
+  .s2-meta { font-size: 9px; color: rgba(255,255,255,0.35); }
+  .s2-tag { display: inline-block; font-size: 8px; padding: 1px 5px; border-radius: 3px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); margin-left: 4px; }
+  .s2-right { text-align: right; }
+  .s2-right-amt { font-size: 12px; font-weight: 700; color: #fff; }
+  .s2-right-due { font-size: 9px; color: #ffb347; }
+  .s2-right-done { font-size: 9px; color: #7ee8a2; }
+
+  /* Screen 3 — Voice Entry */
+  .s3-header { background: #111e35; padding: 16px 14px; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: center; }
+  .s3-title { font-size: 13px; font-weight: 700; color: #fff; }
+  .s3-body { padding: 24px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px; background: #0d1829; height: 100%; }
+  .s3-mic { width: 72px; height: 72px; border-radius: 50%; background: #1d9e75; display: flex; align-items: center; justify-content: center; }
+  .s3-mic svg { width: 32px; height: 32px; }
+  .s3-tap { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .s3-examples { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 4px; }
+  .s3-ex { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 10px; font-size: 9px; color: rgba(255,255,255,0.55); font-style: italic; }
+  .s3-or { font-size: 10px; color: rgba(255,255,255,0.3); }
+  .s3-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 10px; font-size: 9px; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; align-items: center; }
+  .s3-arrow { width: 22px; height: 22px; background: rgba(29,158,117,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+
+  /* Bottom nav shared */
+  .bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; background: #111e35; border-top: 1px solid rgba(255,255,255,0.07); padding: 8px 0 10px; display: flex; justify-content: space-around; }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 8px; color: rgba(255,255,255,0.35); }
+  .nav-item.active { color: #1d9e75; }
+  .nav-icon { width: 18px; height: 18px; }
+  .nav-center { width: 36px; height: 36px; border-radius: 50%; background: #1d9e75; display: flex; align-items: center; justify-content: center; margin-top: -10px; }
+
+  /* Brand bar */
+  .brand-bar {
+    position: absolute; top: 44px; left: 100px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand-logo {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: #1d9e75;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand-logo svg { width: 20px; height: 20px; }
+  .brand-name { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.02em; }
+  .brand-name span { color: #97c459; }
+
+  /* Scale banner to 100% width */
+  .wrapper { width: 100%; aspect-ratio: 1440/810; overflow: hidden; }
+  .wrapper .banner { width: 100%; height: 100%; transform-origin: top left; }
+</style>
+
+<div class="wrapper" id="wrapper">
+<div class="banner" id="banner">
+  <div class="bg-pattern"></div>
+  <div class="bg-grid"></div>
+
+  <div class="brand-bar">
+    <div class="brand-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h12"/>
+        <circle cx="20" cy="18" r="2" fill="#fff" stroke="none"/>
+      </svg>
+    </div>
+    <div class="brand-name">Agro<span>Khata</span></div>
+  </div>
+
+  <div class="left-panel">
+    <div class="tag"><div class="dot"></div> Hindi-first · Fertilizer Shops · PWA</div>
+    <div class="headline">Khata.<br>Voice.<br><span>Hisaab.</span></div>
+    <div class="sub">Smart ledger for fertilizer, seed & pesticide retailers — track sales, credit, and stock in Hindi.</div>
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#97c459" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        </div>
+        Voice entry in Hindi — no typing
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#97c459" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M5 7h6M5 10h4"/></svg>
+        </div>
+        Customer credit & payment tracking
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#97c459" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v12M4 6l4-4 4 4M4 10l4 4 4-4"/></svg>
+        </div>
+        Sale, purchase & stock in one place
+      </div>
+    </div>
+    <div class="pill-row">
+      <div class="pill">Next.js 15</div>
+      <div class="pill">Supabase</div>
+      <div class="pill">PWA</div>
+      <div class="pill">Hindi UI</div>
+      <div class="pill">AI Voice</div>
+    </div>
+  </div>
+
+  <div class="screens-area">
+
+    <!-- Phone 1: Ledger/Hissab -->
+    <div class="phone phone-1">
+      <div class="s1-header">
+        <div class="s1-shop">
+          <div class="s1-avatar">VI</div>
+          <div class="s1-name">Vinod Fertilizer</div>
+        </div>
+        <div class="s1-stats">
+          <div class="s1-stat">
+            <div class="s1-label">बिक्री</div>
+            <div class="s1-val green">₹1,560</div>
+          </div>
+          <div class="s1-divider"></div>
+          <div class="s1-stat">
+            <div class="s1-label">खरीद</div>
+            <div class="s1-val red">₹19,085</div>
+          </div>
+          <div class="s1-divider"></div>
+          <div class="s1-stat">
+            <div class="s1-label">बकाया</div>
+            <div class="s1-val red">₹630</div>
+          </div>
+        </div>
+      </div>
+      <div class="s1-body">
+        <div class="s1-tabs">
+          <div class="s1-tab active">All</div>
+          <div class="s1-tab inactive">Sale</div>
+          <div class="s1-tab inactive">Purchase</div>
+          <div class="s1-tab inactive">Payments</div>
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:8px;">June 2026</div>
+        <div class="s1-row">
+          <div>
+            <div class="s1-product">DAP</div>
+            <div class="s1-date">Sandeep · 24 Jun</div>
+          </div>
+          <div class="s1-amt">
+            <div class="s1-amt-val" style="color:#ff7c7c">-₹13,250</div>
+            <div class="s1-done">Done</div>
+          </div>
+        </div>
+        <div class="s1-row">
+          <div>
+            <div class="s1-product">Hara Kashish</div>
+            <div class="s1-date">Billu Don · 24 Jun</div>
+          </div>
+          <div class="s1-amt">
+            <div class="s1-amt-val">₹350</div>
+            <div class="s1-done">Done</div>
+          </div>
+        </div>
+        <div class="s1-row">
+          <div>
+            <div class="s1-product">Nominee Gold</div>
+            <div class="s1-date">Koshal · 23 Jun</div>
+          </div>
+          <div class="s1-amt">
+            <div class="s1-amt-val">₹560</div>
+            <div class="s1-due">₹460 due</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="14" height="12" rx="2"/><path d="M6 7h6M6 10h4"/></svg>
+          Ledger
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="12" height="12" rx="2"/><path d="M6 9h6M9 6v6"/></svg>
+          Stock
+        </div>
+        <div class="nav-item">
+          <div class="nav-center">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="2"><path d="M9 4v10M4 9h10"/></svg>
+          </div>
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="7" r="3"/><path d="M3 15c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+          Customers
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="10" y="2" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg>
+          More
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone 2: Customer Detail -->
+    <div class="phone phone-2">
+      <div class="s2-header">
+        <div class="s2-back">←</div>
+        <div class="s2-customer">Koshal Dhanda</div>
+        <div class="s2-phone">📞 9876543210</div>
+      </div>
+      <div class="s2-totals">
+        <div class="s2-total">
+          <div class="s2-total-label">Total Order</div>
+          <div class="s2-total-val white">₹1,210</div>
+        </div>
+        <div class="s2-tdivider"></div>
+        <div class="s2-total">
+          <div class="s2-total-label">Received</div>
+          <div class="s2-total-val green">₹580</div>
+        </div>
+        <div class="s2-tdivider"></div>
+        <div class="s2-total">
+          <div class="s2-total-label">Due</div>
+          <div class="s2-total-val red">₹630</div>
+        </div>
+      </div>
+      <div class="s2-body">
+        <div class="s2-month">June 2026</div>
+        <div class="s2-row">
+          <div class="s2-radio"></div>
+          <div class="s2-info">
+            <div class="s2-pname">Jaandaar - Multi-Micronutrients</div>
+            <div class="s2-meta">24 Jun 2026 <span class="s2-tag">Sale</span></div>
+          </div>
+          <div class="s2-right">
+            <div class="s2-right-amt">₹370</div>
+            <div class="s2-right-due">₹170 due</div>
+          </div>
+        </div>
+        <div class="s2-row">
+          <div class="s2-radio"></div>
+          <div class="s2-info">
+            <div class="s2-pname">Nominee Gold</div>
+            <div class="s2-meta">24 Jun 2026 <span class="s2-tag">Sale</span></div>
+          </div>
+          <div class="s2-right">
+            <div class="s2-right-amt">₹560</div>
+            <div class="s2-right-due">₹460 due</div>
+          </div>
+        </div>
+        <div class="s2-row">
+          <div class="s2-radio"></div>
+          <div class="s2-info">
+            <div class="s2-pname">Nominee Gold</div>
+            <div class="s2-meta">23 Jun 2026 <span class="s2-tag">Sale</span></div>
+          </div>
+          <div class="s2-right">
+            <div class="s2-right-amt">₹280</div>
+            <div class="s2-right-done">Done as cash</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#111e35;padding:10px 8px;display:flex;gap:6px;">
+        <div class="s1-btn outline" style="flex:1">+ Add Payment</div>
+        <div class="s1-btn outline" style="flex:1">Report</div>
+        <div class="s1-btn solid" style="flex:1">+ Add Order</div>
+      </div>
+    </div>
+
+    <!-- Phone 3: Voice Entry -->
+    <div class="phone phone-3">
+      <div class="s3-header"><div class="s3-title">Voice Entry</div></div>
+      <div class="s3-body">
+        <div class="s3-mic">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+            <rect x="11" y="4" width="10" height="16" rx="5"/>
+            <path d="M6 17c0 5.5 4.5 10 10 10s10-4.5 10-10M16 27v3"/>
+          </svg>
+        </div>
+        <div class="s3-tap">Tap and speak</div>
+        <div class="s3-examples">
+          <div class="s3-ex">"Sold sugar worth ₹100 to Ramesh in cash"</div>
+          <div class="s3-ex">"Purchased 500kg DAP from Ramlal on credit"</div>
+          <div class="s3-ex">"Received ₹200 payment from Suresh"</div>
+        </div>
+        <div class="s3-or">Or type here</div>
+        <div class="s3-input">
+          <span>Type the transaction...</span>
+          <div class="s3-arrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="14" height="12" rx="2"/><path d="M6 7h6M6 10h4"/></svg>
+          Ledger
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="12" height="12" rx="2"/><path d="M6 9h6M9 6v6"/></svg>
+          Stock
+        </div>
+        <div class="nav-item">
+          <div class="nav-center">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="2"><path d="M9 4v10M4 9h10"/></svg>
+          </div>
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="7" r="3"/><path d="M3 15c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+          Customers
+        </div>
+        <div class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="10" y="2" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg>
+          More
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom label -->
+  <div style="position:absolute;bottom:32px;right:100px;font-size:12px;color:rgba(255,255,255,0.2);letter-spacing:0.08em;font-weight:500;">
+    CASE STUDY — UI/UX + PRODUCT DESIGN
+  </div>
+
+</div>
+</div>
+
+<script>
+  function scaleBanner() {
+    const wrapper = document.getElementById('wrapper');
+    const banner = document.getElementById('banner');
+    const w = wrapper.clientWidth;
+    const scale = w / 1440;
+    banner.style.transform = `scale(${scale})`;
+    banner.style.width = '1440px';
+    banner.style.height = '810px';
+    wrapper.style.height = (810 * scale) + 'px';
+  }
+  scaleBanner();
+  window.addEventListener('resize', scaleBanner);
+</script>
