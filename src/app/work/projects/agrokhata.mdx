@@ -37,53 +37,49 @@ The home screen shows everything a shopkeeper needs at a glance: total sales, to
 
 Below the header, a chronological feed of all transactions — Sales, Purchases, and Payments — filterable with one tap. Every entry shows the product name, customer or vendor, amount, and whether it's settled or still due.
 
-![Ledger dashboard — sales, purchases, dues at a glance](/images/projects/astrokhata/hissab.png)
-
 The UI is fully in Hindi. Labels like **बिक्री** (sales), **खरीद** (purchase), **मिला** (received), **बकाया** (due) map directly to how shopkeepers talk about their business — not translated from an English business app.
 
 ### Stock Management — Know What You Have, Before You Run Out
 
 The Stock screen shows every product with its category (Fertilizers, Pesticides), brand, quantity in stock, and both buying and selling price side by side.
 
-Low stock is flagged automatically with an orange **"Low"** badge — so the shopkeeper knows to reorder DAP or Nominee Gold before it runs out, not after a customer asks for it.
-
-![Stock view — products, quantities, buy/sell prices, low stock alerts](/images/projects/astrokhata/stock.png)
-
-Adding new stock is a simple form: pick the date, select the vendor, choose the products. Multiple products from a single purchase can be added in one entry.
-
-![Add Stock — date, vendor, multi-product entry](/images/projects/astrokhata/add-stock.png)
+Low stock is flagged automatically with an orange **"Low"** badge — so the shopkeeper knows to reorder DAP or Nominee Gold before it runs out, not after a customer asks for it. Adding new stock is a simple form: pick the date, select the vendor, choose the products. Multiple products from a single purchase can be added in one entry.
 
 ### Customer Accounts — Track Credit, Recover Dues
 
 Every customer has their own account showing total orders, amount received, and amount still due — in clear red when outstanding.
 
-The transaction history per customer shows exactly which products were sold on which date, how much was collected, and what remains. "Done as cash" vs "₹170 due" statuses are instantly scannable.
+The transaction history per customer shows exactly which products were sold on which date, how much was collected, and what remains. "Done as cash" vs "₹170 due" statuses are instantly scannable. From the customer screen, a shopkeeper can add a payment, add a new order, or pull a report — all in three taps.
 
-From the customer screen, a shopkeeper can add a payment, add a new order, or pull a report — all in three taps.
+### Quick Actions — Everything One Tap Away
 
-![Customer detail — Koshal Dhanda, ₹630 due across transactions](/images/projects/astrokhata/customer-detail.png)
+The central `+` button opens a **"What to do?"** action sheet: New Sale, Stock In, Payment Received, Expense, Scan Bill, Voice Entry, New Bill. No deep navigation — the most common shop actions are one tap from anywhere in the app.
 
-### AI Bill Scan — Point Camera, Skip the Typing
+---
 
-When a vendor delivers stock with a physical paper bill, the shopkeeper used to re-enter every item manually. With Scan Bill, they just point their phone camera at the bill.
+## The Two Features That Change Everything
 
-The app captures the image, reads the text with OCR, and uses AI to extract the items, quantities, rates, and vendor name — showing a live progress indicator as each step completes.
+### फोटो लो, AI पढ़ेगा। Entry होगी।
 
-![Bill scanning — Capturing → Reading → Calculating → Ready](/images/projects/astrokhata/bill-scan.png)
+![AI Bill Scan — point camera, AI extracts items and fills entry automatically](/images/projects/astrokhata/profile-bill-scan-ai.png)
 
-The extracted bill comes up for confirmation: vendor name, all items with quantities and prices, total, and payment status (Paid / Partial / Credit). The shopkeeper taps to save it as Stock In, a Sale, or a Payment — and it's done.
+When a vendor delivers stock with a physical paper bill, the shopkeeper used to re-enter every item manually. With **AI Bill Scan**, they just point their phone camera at the bill.
 
-![Scan confirmation — DAP 40KG, Jagdeep Singh, ₹1,350 with payment options](/images/projects/astrokhata/scan-based-confirmation.png)
+The app captures the image, reads the text with OCR, and uses AI to extract the items, quantities, rates, and vendor name — in seconds. The extracted bill comes up for confirmation: vendor name, all line items with quantities and prices, total, and payment status (Paid / Partial / Credit). One tap to save as Stock In, Sale, or Payment — done.
 
-**This one feature eliminates the biggest daily data-entry burden** — entering purchase bills. For a shop receiving 2–3 deliveries a day, that's significant time saved.
+**This eliminates the biggest daily data-entry burden.** For a shop receiving 2–3 deliveries a day, that's significant time saved every single day.
 
-### Voice Entry — Speak in Hindi, App Understands
+> Scan bill → AI reads & parses → Confirm & save
 
-This is the feature that makes AgroKhata genuinely different.
+**Bill Scan · OCR + AI · Auto Stock In · GST Ready · PWA**
 
-Many shopkeepers are comfortable speaking Hindi but uncomfortable typing on a phone. Voice Entry lets them say a transaction out loud — in natural, conversational Hindi — and the app parses it into a structured entry.
+---
 
-![Voice Entry — tap and speak in Hindi or local dialect](/images/projects/astrokhata/voice-entry.png)
+### बोलो, AI समझेगा। Entry होगी।
+
+![AI Voice Entry — speak in Hindi or local dialect, AI parses to structured transaction](/images/projects/astrokhata/profile-voice-ai.png)
+
+Many shopkeepers are comfortable speaking Hindi but uncomfortable typing on a phone. **Voice Entry** lets them say a transaction out loud — in natural, conversational Hindi — and the app parses it into a structured entry.
 
 They can say things like:
 - *"Sold sugar worth ₹100 to Ramesh in cash"*
@@ -92,27 +88,15 @@ They can say things like:
 
 The AI understands the intent, extracts the transaction type, customer or vendor name, product, amount, and payment method — and shows a confirmation card before saving.
 
-![Voice result — Hindi input parsed to: Sale, Nominee Gold, ₹550, Cash](/images/projects/astrokhata/voice-result.png)
+The real test: it works with local dialect and informal phrasing. Input like *"मनीष को दोनों में गोल्ड 550 रुपए ना गाड़ी"* — colloquial, abbreviated, how someone actually speaks mid-transaction — is correctly parsed to a ₹550 sale of Nominee Gold to Manish, paid in cash.
 
-The real test: it works with local dialect and informal phrasing. The screenshot shows the input *"मनीष को दोनों में गोल्ड 550 रुपए ना गाड़ी"* — colloquial, abbreviated, how someone actually speaks mid-transaction — correctly parsed to a ₹550 sale of Nominee Gold to Manish, paid in cash.
+**This is the game changer.** A shopkeeper doesn't need to stop what they're doing, navigate menus, or type anything. They speak one sentence, confirm, done.
 
-**This is the game changer.** It means a shopkeeper doesn't need to stop what they're doing, navigate menus, or type anything. They speak one sentence, confirm, done.
+> Tap & speak → AI parses → Confirm & save
 
-### Quick Actions — Everything One Tap Away
+**Hindi UI · AI Parsing · Next.js 15 · Supabase · PWA**
 
-The central `+` button opens a "What to do?" action sheet with every common task:
-
-- New Sale
-- Stock In
-- Payment Received
-- Expense
-- Scan Bill
-- Voice Entry
-- New Bill
-
-![Quick actions — one-tap access to all tasks](/images/projects/astrokhata/quick-links.png)
-
-No deep navigation. No hunting through menus. The most common shop actions are always one tap from anywhere in the app.
+---
 
 ## Why This Is Different
 
@@ -131,5 +115,5 @@ The result is a product that doesn't ask shopkeepers to change how they work —
 ## Tools Used
 
 **Design:** Figma
-**Development:** React Native, Claude API (voice parsing, bill OCR)
+**Development:** Next.js 15, Supabase, PWA, Claude API (voice parsing, bill OCR)
 **Platforms:** Android (primary), iOS
