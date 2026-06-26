@@ -170,6 +170,28 @@ function createHR() {
   );
 }
 
+function createBlockquote({ children }: { children: ReactNode }) {
+  return (
+    <div
+      style={{
+        backgroundColor: "var(--neutral-alpha-weak, rgba(0,0,0,0.03))",
+        borderLeft: "3px solid var(--brand-solid-strong, #2d7a4f)",
+        borderRadius: "8px",
+        padding: "16px 20px",
+        margin: "20px 0",
+      }}
+    >
+      <Text
+        variant="body-default-m"
+        onBackground="neutral-strong"
+        style={{ lineHeight: "175%", fontStyle: "normal" }}
+      >
+        {children}
+      </Text>
+    </div>
+  );
+}
+
 const components = {
   p: createParagraph as any,
   h1: createHeading("h1") as any,
@@ -186,6 +208,7 @@ const components = {
   ul: createList("ul") as any,
   li: createListItem as any,
   hr: createHR as any,
+  blockquote: createBlockquote as any,
   Heading,
   Text,
   CodeBlock,
