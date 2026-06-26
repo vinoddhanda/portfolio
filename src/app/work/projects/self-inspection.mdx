@@ -1,0 +1,76 @@
+---
+title: "Self Inspection for Insurance — Mobile UX for Car Image Capture"
+publishedAt: "2019-06-01"
+summary: "Designed a mobile-first self-inspection flow that let car owners capture insurance-grade photos themselves — eliminating the need for field inspectors and cutting cost and turnaround time."
+images:
+  - "/html-2/theme/images/projects/self-inspection-4.png"
+team:
+  - name: "Vinod Kumar"
+    role: "Sr. Product Designer"
+    avatar: "/images/avatar.jpg"
+---
+
+## Overview
+
+At CarDekho, every car insurance renewal required a physical inspector to visit the customer's location, photograph the vehicle, and verify its condition. This was expensive, slow, and dependent on scheduling across a large field team.
+
+The goal was to replace this entirely — letting customers capture their own car photos through a guided mobile flow, without sacrificing the quality or legitimacy that insurers required.
+
+## The Challenge
+
+The existing process had multiple failure points:
+
+- A field inspector had to physically travel to the customer location
+- Scheduling required a backend team and calling team for follow-up
+- Customers had no guidance on which photos were needed or how to take them correctly
+- Insurance companies required **live, real-time photos** — not gallery uploads — to prevent fraud
+
+First-round research revealed the core user problem: customers simply didn't know how many photos were needed or how to frame them correctly for an insurance-grade inspection.
+
+![Discovery research](/html-2/theme/images/projects/self-inspection-5.jpg)
+
+## Process
+
+### Discover
+
+We ran usability testing with four groups: the backend scheduling team, the calling team, field runners (inspectors), and customers. This surfaced competing constraints — some insurers required live capture only, others accepted gallery uploads — and fraud prevention was a hard requirement across all of them.
+
+![Discover phase findings](/html-2/theme/images/projects/self-inspection-6.jpg)
+
+### Insights & Strategy
+
+The biggest blocker was user confusion: customers didn't know what a "correct" photo looked like. Two key decisions came out of this phase:
+
+- **Disable gallery access** — all photos must be captured live via camera to prevent fraud
+- **Guide every shot** — overlay frames and instructions for each required angle so users know exactly what to capture
+
+![Insights and strategy](/html-2/theme/images/projects/self-inspection-7.jpg)
+
+### Prototyping & Testing
+
+We built a prototype and tested it with real users across different device types. The step-by-step capture flow — one angle at a time, with visual guidance — dramatically reduced confusion and improved first-attempt success rates.
+
+## Key Design Decisions
+
+- **Brand colors and typography** carried through the entire flow to reinforce trust
+- **User name, car details, and insurance information** surfaced prominently on the first screen — customers confirmed the right vehicle before capturing anything
+- **Do's and don'ts tips** shown before each capture step, reducing re-capture rates
+- **Gallery disabled** — live camera only, satisfying insurer fraud-prevention requirements
+
+![Final design — step-by-step capture](/html-2/theme/images/projects/self-inspection-9.jpg)
+
+![Final design — guidance overlays](/html-2/theme/images/projects/self-inspection-8.jpg)
+
+## Results
+
+Replacing field inspector visits with a self-service mobile flow eliminated scheduling overhead, reduced cost per inspection, and cut turnaround time significantly. Users who followed the guided flow completed the inspection successfully on the first attempt at a much higher rate than the previous unguided process.
+
+## Next Steps
+
+The next phase focused on machine learning integration: using the car's make, model, and year to generate a vehicle-specific camera frame — so the overlay matches the exact shape and dimensions of that car, making "correct framing" even more intuitive for users.
+
+## Tools Used
+
+**Design:** Figma, InVision
+**Research:** Usability testing, stakeholder interviews
+**Platforms:** Mobile web (Android-first)
